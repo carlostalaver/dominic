@@ -9,7 +9,9 @@ import { isNullOrUndefined } from 'util';
   providedIn: 'root'
 })
 export class AuthService {
+
   constructor(private http: HttpClient) {}
+
   headers: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json'
   });

@@ -22,6 +22,11 @@ export class DataApiService {
 
   // Retorna todos los libros
   getAllBooks() {
+    const url_api = 'http://localhost:3000/api/books';
+    return this.http.get(url_api);
+  }
+
+  getNotOffers() {
     const url_api = 'http://localhost:3000/api/books?filter[where][oferta]=0';
     return this.http.get(url_api);
   }
@@ -62,8 +67,8 @@ export class DataApiService {
     // TODO: Obtener token
     // TODO: NOt Null
     const token = this.authService.getToken();
-    const url_api =  `http://localhost:3000/api/books?access_token=${token}`;
-    return this.http.delete<BookInterface>(url_api,  {headers: this.headers})
+    const url_api =  `http://localhost:3000/api/books/${id}?access_token=${token}`;
+    return this.http.delete<BookInterface>(url_api, {headers: this.headers})
               .pipe(map(data => data ));
   }
 }

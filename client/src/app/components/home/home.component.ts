@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
 
   getListBooks() {
       this.dataApi
-        .getAllBooks()
+        .getNotOffers()
         .subscribe((books: BookInterface) => (this.books = books));
     }
 }
