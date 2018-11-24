@@ -1,6 +1,7 @@
 import { BookInterface } from './../../../models/book-interface';
 import { DataApiService } from './../../../services/data-api.service';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-list-books',
@@ -15,6 +16,7 @@ export class ListBooksComponent implements OnInit {
 
   ngOnInit() {
     this.getListBook();
+    console.log('init del componente list');
   }
 
   getListBook(): void {
@@ -29,6 +31,27 @@ export class ListBooksComponent implements OnInit {
       this.dataService.deleteBook(id)
         .subscribe();
     }
+  }
+
+  onPreUpdateBook(book: BookInterface): void {
+    this.dataService.selectedBook = Object.assign({}, book);
+    this.dataService.titleModal = 'Update Book';
+  }
+
+  resetForm(bookForm?: NgForm) {
+      this.dataService.selectedBook = {
+        id: null,
+        titulo: '',
+        idioma: '',
+        descripcion: '',
+        portada: '',
+        precio: '',
+        link_amazon: '',
+        autor: '',
+        oferta: ''
+      };
+
+      this.dataService.titleModal = 'New Book';
   }
 
 }

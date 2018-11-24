@@ -15,6 +15,19 @@ export class DataApiService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
+  selectedBook: BookInterface = {
+    id: null,
+    titulo: '',
+    idioma: '',
+    descripcion: '',
+    portada: '',
+    precio: '',
+    link_amazon: '',
+    autor: ''
+  };
+
+  titleModal: string = 'Hola';
+
   headers: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
      Authorization: this.authService.getToken()
@@ -49,6 +62,7 @@ export class DataApiService {
     // TODO: NOt Null
     const token = this.authService.getToken();
     const url_api =  `http://localhost:3000/api/books?access_token=${token}`;
+    console.log(' el token ', token);
     return this.http.post<BookInterface>(url_api, book, {headers: this.headers})
               .pipe(map(data => data ));
   }
@@ -57,7 +71,7 @@ export class DataApiService {
     // TODO: Obtener token
     // TODO: NOt Null
     const token = this.authService.getToken();
-    const url_api =  `http://localhost:3000/api/books?access_token=${token}`;
+    const url_api =  `http://localhost:3000/api/books/${book.bookId}/?access_token=${token}`;
     return this.http.put<BookInterface>(url_api, book, {headers: this.headers})
               .pipe(map(data => data ));
   }

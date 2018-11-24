@@ -1,5 +1,6 @@
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-navbar',
@@ -13,9 +14,18 @@ export class NavbarComponent implements OnInit {
   public register = '/user/register';
   public list_books = '/admin/list-books';
   ngOnInit() {
+    this.onCheckUser();
   }
 
   onLogout(): void {
     this.authService.logoutUser().subscribe(data => console.log('usuario logout', data));
+  }
+
+  onCheckUser(): boolean {
+    if (isNullOrUndefined(this.authService.getCurrentUser())) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }

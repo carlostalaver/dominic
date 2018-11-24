@@ -8,7 +8,7 @@
   <div class="collapse navbar-collapse" id="mainNavbar">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/offers">Offers</a>
+        <a class="nav-link" routerLink="/offers" *ngIf="onCheckUser()">Offers</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
@@ -16,18 +16,18 @@
         <a [routerLink]="register" class="nav-link">Register</a>
       </li>
       <li class="nav-item">
-        <a [routerLink]="list_books" class="nav-link">List Book</a>
+        <a [routerLink]="list_books" class="nav-link" *ngIf="onCheckUser()">List Book</a>
       </li>
       <li class="nav-item">
-        <a routerLink="/user/profile" class="nav-link">Profile</a>
-      </li>
-
-      <li class="nav-item">
-        <a routerLink="/user/login" class="nav-link">Login</a>
+        <a routerLink="/user/profile" class="nav-link" *ngIf="onCheckUser()">Profile</a>
       </li>
 
       <li class="nav-item">
-        <a (click)="onLogout()" class="nav-link">Loguot</a>
+        <a routerLink="/user/login" class="nav-link" *ngIf="!onCheckUser()">Login</a>
+      </li>
+
+      <li class="nav-item">
+        <a (click)="onLogout()" class="nav-link" *ngIf="onCheckUser()">Loguot</a>
       </li>
     </ul>
   </div>
