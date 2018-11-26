@@ -5,48 +5,34 @@
         <div class="card_register">
           <div class="card">
             <div class="card-body text-center">
-              <form #formRegister = "ngForm" (ngSubmit)="onRegister()">
+              <form #formRegister="ngForm" (ngSubmit)="onRegister(formRegister)">
                 <h1 class="h3 mb-3 font-weight-normal">Register</h1>
                 <div class="form-group">
-                  <input
-                    [(ngModel)]="user.name"
-                    type="text"
-                    id="name"
-                    name="name"
-                    class="form-control "
-                    required
-                    placeholder="Name"
-                  />
+                  <input  type="text" #name="ngModel" name="name" class="form-control " required
+                    placeholder="Name" [(ngModel)]="user.name" required minlength="5" maxlength="10"/>
+                </div>
+                <div *ngIf="name.touched && !name.valid" class="alert alert-danger" role="alert">
+                 <div *ngIf="name.errors.required">Name is required</div>
+                 <div *ngIf="name.errors.minlength">Name must be at lease 5 characters</div>
                 </div>
                 <div class="form-group">
-                  <input
-                    [(ngModel)]="user.email"
-                    type="email"
-                    id="email"
-                    name="email"
-                    class="form-control "
-                    required
-                    placeholder="email"
-                  />
+                  <input #email="ngModel"  [(ngModel)]="user.email" type="email"  name="email" class="form-control " required
+                    placeholder="email" />
                 </div>
+                <div *ngIf="email.touched && !email.valid" class="alert alert-danger" role="alert">
+                    <div *ngIf="email.errors.required">Email is required</div>
+                      </div>
                 <div class="form-group">
-                  <input
-                    [(ngModel)]="user.password"
-                    type="password"
-                    id="password"
-                    name="password"
-                    class="form-control "
-                    required
-                    placeholder="password"
-                  />
+                  <input [(ngModel)]="user.password" type="password" id="password" name="password" class="form-control "
+                    required placeholder="password" />
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">
                   Register
                 </button>
+                --------------------
+                {{msgError}}
                 <div class="form-group">
-                  <a routerLink="/user/login" class="form-control login-user"
-                    >Do you have account?</a
-                  >
+                  <a routerLink="/user/login" class="form-control login-user">Do you have account?</a>
                 </div>
               </form>
             </div>

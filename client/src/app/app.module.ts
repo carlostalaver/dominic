@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 // Services
 import { DataApiService } from './services/data-api.service';
 import { ModalComponent } from './components/modal/modal.component';
+import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ModalComponent } from './components/modal/modal.component';
     RegisterComponent,
     ProfileComponent,
     Page404Component,
-    ModalComponent
+    ModalComponent,
+    TruncateTextPipe
   ],
   imports: [
     BrowserModule,
