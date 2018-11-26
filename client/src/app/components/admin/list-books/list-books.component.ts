@@ -11,9 +11,9 @@ import { NgForm } from '@angular/forms';
 export class ListBooksComponent implements OnInit {
 
   constructor(private dataService: DataApiService) { }
+  p: number = 1;
 
   books: BookInterface;
-
   ngOnInit() {
     this.getListBook();
     console.log('init del componente list');

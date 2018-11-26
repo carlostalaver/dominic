@@ -14,12 +14,15 @@ import { RegisterComponent } from './components/user/register/register.component
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { Page404Component } from './components/page404/page404.component';
 import { FormsModule } from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 
 
 // Services
 import { DataApiService } from './services/data-api.service';
 import { ModalComponent } from './components/modal/modal.component';
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,9 @@ import { TruncateTextPipe } from './pipes/truncate-text.pipe';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule,
+    NgxPaginationModule
   ],
   providers: [DataApiService ],
   bootstrap: [AppComponent]
